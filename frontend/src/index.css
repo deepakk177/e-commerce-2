@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+  background-attachment: fixed;
+  color: #fff;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-lg transition-all duration-300;
+  }
+
+  .glass-nav {
+    @apply bg-[#0f172a]/70 backdrop-blur-md border-b border-white/10 sticky top-0 z-50;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-electric-blue to-purple-600 text-white font-bold rounded-lg shadow-neon-blue hover:shadow-neon-purple transform hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/10 hover:bg-white/10 hover:border-electric-blue/50 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-[#0f172a]/50 backdrop-blur-sm border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-electric-blue focus:border-transparent transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transform hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 hover:shadow-neon-blue hover:border-electric-blue/30;
+  }
+
+  .neon-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-cyber-purple drop-shadow-[0_0_10px_rgba(0, 210, 255, 0.5)];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Loading animation */
+.spinner {
+  border: 3px solid rgba(0, 210, 255, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #00d2ff;
+  border-right: 3px solid #9d50bb;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.mouse-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+      rgba(29, 78, 216, 0.15),
+      transparent 80%);
+  transition: opacity 0.5s ease;
+}
+
+/* ---------------------------------------------------------------------
+   3‑D / clean UI enhancements
+   These classes provide a lightweight, perspective‑based animation
+   system for cards, buttons, and other elements. The goal is to keep the
+   interface minimal while giving it some depth at hover.
+   ------------------------------------------------------------------ */
+
+@layer components {
+  /* container that gives children a perspective context */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    @apply relative overflow-hidden rounded-2xl shadow-lg transition-transform duration-500;
+    perspective: 1200px;
+  }
+
+  .card-3d-inner {
+    @apply w-full h-full transition-transform duration-600 ease-in-out;
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover .card-3d-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-3d-front,
+  .card-3d-back {
+    @apply absolute inset-0 backface-hidden;
+  }
+
+  .card-3d-back {
+    transform: rotateY(180deg);
+  }
+
+  /* 3‑D lift animation for buttons and other controls */
+  .lift-3d {
+    @apply transform transition-transform duration-300;
+    transform-style: preserve-3d;
+  }
+  .lift-3d:hover {
+    transform: translateZ(12px) scale(1.02);
+  }
+  .lift-3d:active {
+    transform: translateZ(8px) scale(0.98);
+  }
+
+  /* soften headings and body text for a cleaner look */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-white;
+  }
+  p, li, span {
+    @apply text-white/90;
+  }
+}
+
+/* additional helper utilities not covered by Tailwind out of the box */
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* subtle 3‑D background rotation for sections */
+@keyframes bg-rotate {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(1deg) scale(1.02); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.bg-breathe {
+  animation: bg-rotate 20s ease-in-out infinite;
+}
+
+/* generic utility to trigger a 3‑D pop-in when elements appear */
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.95) translateZ(-50px); }
+  to   { opacity: 1; transform: scale(1) translateZ(0); }
+}
+.
+pop-in {
+  animation: pop-in 0.5s ease forwards;
+}

@@ -1,0 +1,37 @@
+# =================================================================
+# COMPLETE .ENV CONFIGURATION - COPY THIS TO backend/.env
+# =================================================================
+
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# MongoDB Configuration
+# IMPORTANT: Replace YOUR_MONGODB_PASSWORD with your actual database password!
+# The password you created for user: deepaksinghporte85_db_user
+MONGODB_URI=mongodb+srv://deepaksinghporte85_db_user:YOUR_MONGODB_PASSWORD@cluster01.yikznua.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster01
+
+# Pinecone Configuration ✅ COMPLETE
+PINECONE_API_KEY=pcsk_3QxxLt_B9Z7W75UuKRa9U95xGQwLFBH6W5tiifb9KERb218G18CZv2yj7bfPhHb7i6s1Eo
+PINECONE_ENVIRONMENT=us-east-1
+PINECONE_INDEX_NAME=product-embeddings
+
+# Google Gemini AI Configuration ✅ COMPLETE
+GEMINI_API_KEY=AIzaSyAsQFyhgUXMBwGDIbbUF4NqOV1Jd4adZNw
+
+# Cloudinary Configuration ✅ COMPLETE
+CLOUDINARY_CLOUD_NAME=dkbiuvuat
+CLOUDINARY_API_KEY=664957953826178
+CLOUDINARY_API_SECRET=--Y4KAKKRiE_Hq6yJFtnkc2MEAY
+
+# Frontend URL (for CORS) ✅ COMPLETE
+FRONTEND_URL=http://localhost:5173
+
+# =================================================================
+# INSTRUCTIONS:
+# 1. Copy ALL the lines above (from PORT=5000 to FRONTEND_URL=...)
+# 2. Open: backend/.env in your text editor
+# 3. Paste everything
+# 4. Replace YOUR_MONGODB_PASSWORD with your actual MongoDB password
+# 5. Save the file
+# =================================================================
